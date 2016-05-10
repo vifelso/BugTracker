@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="MySQL - bugtracker@localhost - hibnatebd@localhost" uuid="8cfe35c9-c386-4cab-854e-b7ee3112ec7a">
+    <database-info product="MySQL" version="5.7.11-log" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower"/>
+    <schema name="" catalog="hibnatebd"/>
+    <table name="bugs" schema="" catalog="hibnatebd" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="autor" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="date" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="description" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="priority" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="status" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="title" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="FK4pxwmskaijppn0t55vnp7ceo1" table="user_bugs" schema="" catalog="hibnatebd" columns="bugid"/>
+    </table>
+    <table name="roles" schema="" catalog="hibnatebd" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="role" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="FKh8ciramu9cc9q3qcqiv4ue8a6" table="user_roles" schema="" catalog="hibnatebd" columns="role_id"/>
+    </table>
+    <table name="user_bugs" schema="" catalog="hibnatebd" type="TABLE">
+      <column name="userid" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="bugid" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="userid,bugid"/>
+      <foreign-key name="FK1lrarkil3prf5wvrunyg70qsl" columns="userid" ref-table="users" ref-schema="" ref-catalog="hibnatebd" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK4pxwmskaijppn0t55vnp7ceo1" columns="bugid" ref-table="bugs" ref-schema="" ref-catalog="hibnatebd" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="UK_3w7e0xxbksn9cjfu24q7u16ar" unique="true" columns="bugid"/>
+    </table>
+    <table name="user_roles" schema="" catalog="hibnatebd" type="TABLE">
+      <column name="role_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="user_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="role_id,user_id"/>
+      <foreign-key name="FKh8ciramu9cc9q3qcqiv4ue8a6" columns="role_id" ref-table="roles" ref-schema="" ref-catalog="hibnatebd" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FKhfh9dx7w3ubf1co1vdev94g3f" columns="user_id" ref-table="users" ref-schema="" ref-catalog="hibnatebd" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="UK_g1uebn6mqk9qiaw45vnacmyo2" unique="true" columns="user_id"/>
+    </table>
+    <table name="users" schema="" catalog="hibnatebd" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="email" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="firstname" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="lastname" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="login" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="password" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="FK1lrarkil3prf5wvrunyg70qsl" table="user_bugs" schema="" catalog="hibnatebd" columns="userid"/>
+      <exported-key name="FKhfh9dx7w3ubf1co1vdev94g3f" table="user_roles" schema="" catalog="hibnatebd" columns="user_id"/>
+    </table>
+  </data-source>
+</component>
